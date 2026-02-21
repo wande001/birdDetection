@@ -14,18 +14,25 @@
     "text": "import pandas as pd\n\ndf = pd.read_csv(\"data/day.csv\")"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BirdNET Homepage",
+    "section": "",
+    "text": "Welcome! Use the tabs to explore BirdNET observations."
+  },
+  {
     "objectID": "last_hour.html",
     "href": "last_hour.html",
     "title": "Last Hour Observations",
     "section": "",
-    "text": "import pandas as pd\nfrom datetime import datetime, timedelta\n\n# --- Load Data ---\ndf = pd.read_csv(\"data/output.csv\")\n\n# --- Convert datetime ---\ndf['start'] = pd.to_datetime(df['timestamp'])\n\n# --- Filter last hour ---\none_hour_ago = datetime.now() - timedelta(hours=3)\ndf_last_hour = df[df['start'] &gt;= one_hour_ago]\n\n# --- Filter high confidence ---\ndf_last_hour = df_last_hour[df_last_hour['confidence'] &gt; 0.75]\n\n# --- Aggregate counts per species ---\nresult = (\n    df_last_hour\n    .groupby(\"species\")\n    .size()\n    .reset_index(name=\"count\")\n    .sort_values(\"count\", ascending=False)\n)\n\nresult\n\n\n\n\n\n\n\n\nspecies\ncount\n\n\n\n\n3\nKolgans\n18\n\n\n2\nKleine Rietgans\n11\n\n\n4\nMeerkoet\n8\n\n\n1\nBosuil\n4\n\n\n6\nSmient\n3\n\n\n0\nBlauwe Reiger\n2\n\n\n5\nRoerdomp\n2\n\n\n7\nTrompetzwaan\n1\n\n\n8\nWintertaling\n1"
+    "text": "import pandas as pd\nfrom datetime import datetime, timedelta\n\n# --- Load Data ---\ndf = pd.read_csv(\"data/output.csv\")\n\n# --- Convert datetime ---\ndf['start'] = pd.to_datetime(df['timestamp'])\n\n# --- Filter last hour ---\none_hour_ago = datetime.now() - timedelta(hours=3)\ndf_last_hour = df[df['start'] &gt;= one_hour_ago]\n\n# --- Filter high confidence ---\ndf_last_hour = df_last_hour[df_last_hour['confidence'] &gt; 0.75]\n\n# --- Aggregate counts per species ---\nresult = (\n    df_last_hour\n    .groupby(\"species\")\n    .size()\n    .reset_index(name=\"count\")\n    .sort_values(\"count\", ascending=False)\n)\n\nresult\n\n\n\n\n\n\n\n\nspecies\ncount\n\n\n\n\n8\nMerel\n21\n\n\n6\nKolgans\n18\n\n\n5\nKleine Rietgans\n11\n\n\n7\nMeerkoet\n9\n\n\n4\nHeggenmus\n6\n\n\n2\nBosuil\n4\n\n\n12\nSmient\n3\n\n\n0\nBlauwe Reiger\n2\n\n\n10\nRoerdomp\n2\n\n\n3\nBuizerd\n1\n\n\n1\nBosruiter\n1\n\n\n9\nRansuil\n1\n\n\n11\nRoodborst\n1\n\n\n13\nTrompetzwaan\n1\n\n\n14\nWintertaling\n1"
   },
   {
     "objectID": "last_hour.html#last-hour-observations-confidence-0.75",
     "href": "last_hour.html#last-hour-observations-confidence-0.75",
     "title": "Last Hour Observations",
     "section": "",
-    "text": "import pandas as pd\nfrom datetime import datetime, timedelta\n\n# --- Load Data ---\ndf = pd.read_csv(\"data/output.csv\")\n\n# --- Convert datetime ---\ndf['start'] = pd.to_datetime(df['timestamp'])\n\n# --- Filter last hour ---\none_hour_ago = datetime.now() - timedelta(hours=3)\ndf_last_hour = df[df['start'] &gt;= one_hour_ago]\n\n# --- Filter high confidence ---\ndf_last_hour = df_last_hour[df_last_hour['confidence'] &gt; 0.75]\n\n# --- Aggregate counts per species ---\nresult = (\n    df_last_hour\n    .groupby(\"species\")\n    .size()\n    .reset_index(name=\"count\")\n    .sort_values(\"count\", ascending=False)\n)\n\nresult\n\n\n\n\n\n\n\n\nspecies\ncount\n\n\n\n\n3\nKolgans\n18\n\n\n2\nKleine Rietgans\n11\n\n\n4\nMeerkoet\n8\n\n\n1\nBosuil\n4\n\n\n6\nSmient\n3\n\n\n0\nBlauwe Reiger\n2\n\n\n5\nRoerdomp\n2\n\n\n7\nTrompetzwaan\n1\n\n\n8\nWintertaling\n1"
+    "text": "import pandas as pd\nfrom datetime import datetime, timedelta\n\n# --- Load Data ---\ndf = pd.read_csv(\"data/output.csv\")\n\n# --- Convert datetime ---\ndf['start'] = pd.to_datetime(df['timestamp'])\n\n# --- Filter last hour ---\none_hour_ago = datetime.now() - timedelta(hours=3)\ndf_last_hour = df[df['start'] &gt;= one_hour_ago]\n\n# --- Filter high confidence ---\ndf_last_hour = df_last_hour[df_last_hour['confidence'] &gt; 0.75]\n\n# --- Aggregate counts per species ---\nresult = (\n    df_last_hour\n    .groupby(\"species\")\n    .size()\n    .reset_index(name=\"count\")\n    .sort_values(\"count\", ascending=False)\n)\n\nresult\n\n\n\n\n\n\n\n\nspecies\ncount\n\n\n\n\n8\nMerel\n21\n\n\n6\nKolgans\n18\n\n\n5\nKleine Rietgans\n11\n\n\n7\nMeerkoet\n9\n\n\n4\nHeggenmus\n6\n\n\n2\nBosuil\n4\n\n\n12\nSmient\n3\n\n\n0\nBlauwe Reiger\n2\n\n\n10\nRoerdomp\n2\n\n\n3\nBuizerd\n1\n\n\n1\nBosruiter\n1\n\n\n9\nRansuil\n1\n\n\n11\nRoodborst\n1\n\n\n13\nTrompetzwaan\n1\n\n\n14\nWintertaling\n1"
   },
   {
     "objectID": "week_summary.html",

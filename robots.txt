@@ -1,0 +1,1 @@
+Sitemap: https://wande001.github.io/birdDetection/sitemap.xml
