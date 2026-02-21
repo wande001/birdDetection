@@ -1,0 +1,8 @@
+---
+title: "Summary of the Day"
+---
+```{python}
+import pandas as pd
+
+df = pd.read_csv("data/day.csv")
+```

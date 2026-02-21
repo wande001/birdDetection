@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - last_hour.qmd
+    - day_summary.qmd
+    - week_summary.qmd
+    - stats.qmd
+
+website:
+  title: "BirdNET Observations"
+  navbar:
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "Last Hour"
+        file: last_hour.qmd
+      - text: "Day Summary"
+        file: day_summary.qmd
+      - text: "Week Summary"
+        file: week_summary.qmd
+      - text: "Stats"
+        file: stats.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    include-after-body: refresh.js
