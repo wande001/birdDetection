@@ -1,10 +1,32 @@
 ---
 title: "Last Hour Observations"
 ---
-```{python}
-import pandas as pd
-from IPython.display import display
+## Last Hour Observations (confidence > 0.75)
 
-df = pd.read_csv("data/last_hour.csv")
-display(df)
-```
+```python
+import pandas as pd
+from datetime import datetime, timedelta
+
+# --- Load Data ---
+df = pd.read_csv("output.csv")
+
+# --- Convert datetime ---
+df['start'] = pd.to_datetime(df['start'])
+
+# --- Filter last hour ---
+one_hour_ago = datetime.now() - timedelta(hours=1)
+df_last_hour = df[df['start'] >= one_hour_ago]
+
+# --- Filter high confidence ---
+df_last_hour = df_last_hour[df_last_hour['confidence'] > 0.75]
+
+# --- Aggregate counts per species ---
+result = (
+    df_last_hour
+    .groupby("common_name")
+    .size()
+    .reset_index(name="count")
+    .sort_values("count", ascending=False)
+)
+
+result
