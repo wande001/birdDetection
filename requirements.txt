@@ -2,3 +2,5 @@ pandas
 matplotlib
 jupyter
 ipykernel
+nbformat
+nbclient

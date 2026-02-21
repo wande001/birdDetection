@@ -3,8 +3,6 @@ title: "Summary of the Day"
 ---
 ```{python}
 import pandas as pd
-from IPython.display import display
 
 df = pd.read_csv("data/day.csv")
-display(df.describe(include='all'))
 ```
