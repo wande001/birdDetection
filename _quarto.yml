@@ -1,6 +1,12 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "index.qmd"
+    - "last_hour.qmd"
+    - "day_summary.qmd"
+    - "week_summary.qmd"
+    - "stats.qmd"
 
 website:
   title: "BirdNET Observations"
