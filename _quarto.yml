@@ -13,13 +13,13 @@ website:
   navbar:
     left:
       - text: "Last Hour"
-        file: last_hour.qmd
+        file: last_hour.html
       - text: "Day Summary"
-        file: day_summary.qmd
+        file: day_summary.html
       - text: "Week Summary"
-        file: week_summary.qmd
+        file: week_summary.html
       - text: "Stats"
-        file: stats.qmd
+        file: stats.html
 
 format:
   html:
