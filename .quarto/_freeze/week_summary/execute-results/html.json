@@ -1,0 +1,12 @@
+{
+  "hash": "239521c989cfca37c6239096c2515ff4",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Week Summary\"\n---\n\n::: {#014fdbd6 .cell execution_count=1}\n``` {.python .cell-code}\nimport pandas as pd\n\ndf = pd.read_csv(\"data/week.csv\")\n```\n:::\n\n\n",
+    "supporting": [
+      "week_summary_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "hash": "19bcf4c6d53e90c5d47d11fe8d5138f3",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Hourly Activity (Last Day)\"\n---\n\n::: {#e661f9a0 .cell execution_count=1}\n``` {.python .cell-code}\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nstats = pd.read_csv(\"data/stats.csv\", index_col=0, header=None)\nstats.plot(kind='bar', legend=False)\nplt.xlabel(\"Hour of Day\")\nplt.ylabel(\"Observations\")\nplt.title(\"BirdNET Observations per Hour (Last 24h)\")\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](stats_files/figure-html/cell-2-output-1.png){}\n:::\n:::\n\n\n",
+    "supporting": [
+      "stats_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
