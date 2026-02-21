@@ -1,0 +1,4 @@
+---
+title: "BirdNET Homepage"
+---
+Welcome! Use the tabs to explore BirdNET observations.

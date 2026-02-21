@@ -1,0 +1,10 @@
+---
+title: "Last Hour Observations"
+---
+```{python}
+import pandas as pd
+from IPython.display import display
+
+df = pd.read_csv("data/last_hour.csv")
+display(df)
+```

@@ -1,0 +1,11 @@
+name: birdnet-quarto
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - matplotlib
+  - pip
+  - pip:
+      - jupyter
+      - ipykernel

@@ -1,0 +1,14 @@
+---
+title: "Hourly Activity (Last Day)"
+---
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+stats = pd.read_csv("data/stats.csv", index_col=0, header=None)
+stats.plot(kind='bar', legend=False)
+plt.xlabel("Hour of Day")
+plt.ylabel("Observations")
+plt.title("BirdNET Observations per Hour (Last 24h)")
+plt.show()
+```
