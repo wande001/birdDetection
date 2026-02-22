@@ -43,7 +43,8 @@ if len(result) >0:
         if ts > cutoff:
             age = (now - ts).days
             if age < DAYS:
-                # "days - age - 1" reproduces your original mapping
+                print(DAYS - age - 1)
+                print(ts.hour)
                 heatmap[DAYS - age - 1][ts.hour] += 1
 
     # Convert to DataFrame for convenient plotting
