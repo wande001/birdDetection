@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 CSV_PATH = "data/output.csv"
 df = pd.read_csv(CSV_PATH)
 df['timestamp'] = pd.to_datetime(df['timestamp'])
-now = datetime.utcnow()
+now = datetime.now()
 
 # Week summary
 df_last_week = df[df['timestamp'] > now - timedelta(days=1)]
