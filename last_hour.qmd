@@ -8,15 +8,18 @@ execute:
 ```{python}
 import pandas as pd
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
 
 # --- Load Data ---
 df = pd.read_csv("data/output.csv")
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+now = datetime.utcnow()
 
 # --- Convert datetime ---
 df['start'] = pd.to_datetime(df['timestamp'])
 
 # --- Filter last hour ---
-one_hour_ago = datetime.now() - timedelta(hours=3)
+one_hour_ago = datetime.now() - timedelta(hours=1.1)
 df_last_hour = df[df['start'] >= one_hour_ago]
 
 # --- Filter high confidence ---
@@ -29,7 +32,20 @@ result = (
     .size()
     .reset_index(name="count")
     .sort_values("count", ascending=False)
+    .reset_index(drop=True) 
 )
 
-result
+if len(result) > 0:
+
+    print(result)
+
+    stats = df_last_hour.groupby(df_last_hour['timestamp'].dt.minute).size()
+
+    stats.plot(kind='bar', legend=False)
+    plt.xlabel("Hour of Day")
+    plt.ylabel("Observations")
+    plt.title("Observations per Hour (Last hour)")
+    plt.show()
+else:
+    print("No observations in the last hour")
 ```

@@ -1,5 +1,27 @@
 ---
 title: "BirdNET Homepage"
+execute:
+  echo: false
 ---
-Welcome! Use the tabs to explore BirdNET observations.
- Test
+
+These are all the raw observations from the last hour.
+ 
+ ```{python}
+import pandas as pd
+from datetime import datetime, timedelta
+
+# --- Load Data ---
+df = pd.read_csv("data/output.csv")
+
+# --- Convert datetime ---
+df['start'] = pd.to_datetime(df['timestamp'])
+
+# --- Filter last hour ---
+one_hour_ago = datetime.now() - timedelta(hours=3)
+df_last_hour = df[df['start'] >= one_hour_ago]
+
+# --- Filter high confidence ---
+df_last_hour = df_last_hour[df_last_hour['confidence'] > 0.75]
+
+df_last_hour
+```

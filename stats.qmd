@@ -1,14 +1,56 @@
 ---
 title: "Hourly Activity (Last Day)"
 ---
+---
+title: "Week Summary"
+---
 ```{python}
 import pandas as pd
+from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 
-stats = pd.read_csv("data/stats.csv", index_col=0, header=None)
-stats.plot(kind='bar', legend=False)
-plt.xlabel("Hour of Day")
-plt.ylabel("Observations")
-plt.title("BirdNET Observations per Hour (Last 24h)")
-plt.show()
+CSV_PATH = "data/output.csv"
+df = pd.read_csv(CSV_PATH)
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+now = datetime.utcnow()
+
+# Stats: observations per hour (last day)
+last_day_df = df[df['timestamp'] > now - timedelta(days=7)]
+
+# --- Aggregate counts per species ---
+result = (
+    last_day_df
+    .groupby("species")
+    .size()
+    .reset_index(name="count")
+    .sort_values("count", ascending=False)
+    .reset_index(drop=True) 
+)
+
+if len(result) >0:
+    stats = last_day_df.groupby(last_day_df['timestamp'].dt.hour).size()
+
+    stats.plot(kind='bar', legend=False)
+    plt.xlabel("Hour of Day")
+    plt.ylabel("Observations")
+    plt.title("Observations per Hour (Last 7 days)")
+    plt.show()
+
+    for i in range(10):
+        bird = result["species"].iloc[i]
+        filtered = last_day_df[last_day_df["species"] == bird]
+        filtered_stats = filtered.groupby(filtered['timestamp'].dt.hour).size()
+        filtered_stats = (
+        filtered_stats
+        .reindex(range(24), fill_value=0))
+        #filtered_stats = filtered_stats/filtered_stats.max()
+        filtered_stats.plot(kind="line", label = bird)    
+    plt.xlabel("Hour of Day")
+    plt.ylabel("Observations")
+    plt.title("Observations per Hour (Last 7 days)")
+    plt.legend()
+    plt.show()
+else:
+    print("No observations in the last week")
+
 ```

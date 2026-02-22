@@ -3,6 +3,47 @@ title: "Week Summary"
 ---
 ```{python}
 import pandas as pd
+from datetime import datetime, timedelta
 
-df = pd.read_csv("data/week.csv")
+CSV_PATH = "data/output.csv"
+df = pd.read_csv(CSV_PATH)
+df['timestamp'] = pd.to_datetime(df['timestamp'])
+now = datetime.utcnow()
+
+# Week summary
+df_last_week = df[df['timestamp'] > now - timedelta(days=7)]
+
+# --- Convert datetime ---
+df_last_week['start'] = pd.to_datetime(df['timestamp'])
+
+# --- Filter high confidence ---
+df_last_week = df_last_week[df_last_week['confidence'] > 0.75]
+
+# --- Aggregate counts per species ---
+result = (
+    df_last_week
+    .groupby("species")
+    .size()
+    .reset_index(name="count")
+    .sort_values("count", ascending=False)
+    .reset_index(drop=True) 
+)
+
+filtered = result[~result["species"].isin(["Human-vocal", "Engine"])]
+
+if len(filtered) > 0:
+
+    print(filtered)
+
+    stats = last_day_week.groupby(last_day_week['timestamp'].dt.hour).size()
+
+    stats.plot(kind='bar', legend=False)
+    plt.xlabel("Hour of Day")
+    plt.ylabel("Observations")
+    plt.title("Observations per Hour (Last 7 days)")
+    plt.show()
+else:
+    print("No observations in the last hour")
+
+
 ```
