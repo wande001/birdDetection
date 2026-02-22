@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 # --- Load Data ---
 df = pd.read_csv("data/output.csv")
 df['timestamp'] = pd.to_datetime(df['timestamp'])
-now = datetime.utcnow()
+now = datetime.now()
 
 # --- Convert datetime ---
 df['start'] = pd.to_datetime(df['timestamp'])
