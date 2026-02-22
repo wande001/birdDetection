@@ -138,6 +138,8 @@ def audio_callback(indata, frames, time_info, status):
             # Skip human vocalizations
             if species.lower() == "human vocal":
                 continue
+            if species.lower() == "porseleinhoen":
+                continue
             if conf >= CONFIDENCE_THRESHOLD:
                 print(f"{species}: {conf:.2f}")
 
@@ -145,7 +147,7 @@ def audio_callback(indata, frames, time_info, status):
                 start_time = r["start_time"]
                 end_time = r["end_time"]
 
-                #save_bird_audio(audio, start_time, end_time, species)
+                save_bird_audio(audio, start_time, end_time, species)
 
                 save_detection(species, conf)
 
