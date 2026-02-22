@@ -24,7 +24,7 @@ jobs:
           # version: 0.9.600
       
       # add software dependencies here
-      - run: pip pandas matplotlib jupyter
+      - run: pip install pandas matplotlib jupyter
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
