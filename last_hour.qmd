@@ -3,7 +3,6 @@ title: "Last Hour Observations"
 execute:
   echo: false
 ---
-## Last Hour Observations
 
 ```{python}
 import pandas as pd

@@ -1,10 +1,8 @@
 ---
-title: "Week Summary"
+title: "Summary of the week"
 execute:
   echo: false
 ---
-
-## Summary of the week
 
 ```{python}
 import pandas as pd

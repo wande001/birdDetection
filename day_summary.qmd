@@ -3,7 +3,6 @@ title: "Summary of the Day"
 execute:
   echo: false
 ---
-## Summary of the day
 
 ```{python}
 import pandas as pd
