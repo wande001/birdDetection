@@ -1,5 +1,7 @@
 ---
 title: "Last Hour Observations"
+execute:
+  echo: false
 ---
 ## Last Hour Observations (confidence > 0.75)
 
