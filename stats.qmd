@@ -9,6 +9,7 @@ execute:
 import pandas as pd
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
+import numpy
 
 CSV_PATH = "data/output.csv"
 df = pd.read_csv(CSV_PATH)
@@ -29,40 +30,6 @@ result = (
 )
 
 if len(result) >0:
-
-# ---- HEATMAP (last 7 days × 24 hours) ----
-
-    DAYS = 7
-    cutoff = now - timedelta(days=DAYS)
-
-    # create empty heatmap: DAYS rows × 24 columns
-    heatmap = [[0 for _ in range(24)] for _ in range(DAYS)]
-
-    for _, row in df.iterrows():
-        ts = row["timestamp"]
-        if ts > cutoff:
-            age = (now - ts).days
-            if age < DAYS:
-                print(DAYS - age - 1)
-                print(ts.hour)
-                heatmap[DAYS - age - 1][ts.hour] += 1
-
-    # Convert to DataFrame for convenient plotting
-    import numpy as np
-    heatmap_arr = np.array(heatmap)
-
-    plt.figure(figsize=(12, 4))
-    plt.imshow(heatmap_arr, aspect="auto", cmap="viridis")
-    plt.colorbar(label="Observations")
-
-    plt.xlabel("Hour of Day")
-    plt.ylabel("Days Ago")
-    plt.title("Heatmap of Observations (Last 7 Days)")
-
-    plt.xticks(range(24))
-    plt.yticks(range(DAYS), range(DAYS - 1, -1, -1))
-
-    plt.show()
 
     stats = last_day_df.groupby(last_day_df['timestamp'].dt.hour).size()
 
