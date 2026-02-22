@@ -177,37 +177,33 @@ listener_thread.start()
 # Gitcommiter thread to auto-commit CSV every hour
 # ======================================================
 
-
-def auto_git_committer(fileName = CSV_FILE):
+def auto_git_committer(fileName=CSV_FILE):
     last_commit_hour = None
 
     while True:
         now = datetime.datetime.now()
+        current_hour = now.strftime("%Y%m%d%H")
 
-        # Run at the exact start of the hour
-        if now.minute == 1 and now.second == 0:
-            hour_key = now.strftime("%Y%m%d%H")
+        # Commit once per hour
+        if current_hour != last_commit_hour:
+            print(f"[GIT] Auto-committing output.csv at {now}")
 
-            if hour_key != last_commit_hour:
-                print(f"[GIT] Auto-committing output.csv at {now}")
+            try:
+                subprocess.run(["git", "add", fileName], check=True)
 
-                try:
-                    # Stage file
-                    subprocess.run(["git", "add", fileName], check=True)
+                msg = f"Auto-commit output.csv at {now.strftime('%Y-%m-%d %H:%M')}"
+                subprocess.run(["git", "commit", "-m", msg], check=True)
 
-                    # Commit
-                    msg = f"Auto-commit output.csv at {now.strftime('%Y-%m-%d %H:%M')}"
-                    subprocess.run(["git", "commit", "-m", msg], check=True)
+                # OPTIONAL: enable if desired
+                # subprocess.run(["git", "push"], check=True)
 
-                    # OPTIONAL: push to remote
-                    # subprocess.run(["git", "push"], check=True)
+                last_commit_hour = current_hour
 
-                    last_commit_hour = hour_key
+            except subprocess.CalledProcessError as e:
+                print(f"[GIT ERROR] {e}")
 
-                except subprocess.CalledProcessError as e:
-                    print(f"[GIT ERROR] {e}")
-
-        time.sleep(1)  # check once per second
+        # Check only every minute
+        time.sleep(60)
 
 # Start git commit thread
 git_thread = threading.Thread(target=auto_git_committer)
