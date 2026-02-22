@@ -195,7 +195,7 @@ def auto_git_committer(fileName=CSV_FILE):
                 subprocess.run(["git", "commit", "-m", msg], check=True)
 
                 # OPTIONAL: enable if desired
-                # subprocess.run(["git", "push"], check=True)
+                subprocess.run(["git", "push"], check=True)
 
                 last_commit_hour = current_hour
 
