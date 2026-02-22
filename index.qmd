@@ -17,7 +17,7 @@ df = pd.read_csv("data/output.csv")
 df['start'] = pd.to_datetime(df['timestamp'])
 
 # --- Filter last hour ---
-one_hour_ago = datetime.now() - timedelta(hours=3)
+one_hour_ago = datetime.now() - timedelta(hours=1.02)
 df_last_hour = df[df['start'] >= one_hour_ago]
 
 # --- Filter high confidence ---
