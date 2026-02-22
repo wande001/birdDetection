@@ -41,7 +41,11 @@ if len(filtered) > 0:
 
     stats = df_last_week.groupby(df_last_week['timestamp'].dt.hour).size()
 
-    stats.plot(kind='bar', legend=False)
+    filtered_stats = (
+        filtered_stats
+        .reindex(range(24), fill_value=0))
+
+    filtered_stats.plot(kind='bar', legend=False)
     plt.xlabel("Hour of Day")
     plt.ylabel("Observations")
     plt.title("Observations per Hour (Last 7 days)")
@@ -50,8 +54,11 @@ if len(filtered) > 0:
     print(filtered)
 
     stats = df_last_week.groupby(df_last_week['timestamp'].dt.day).size()
+    filtered_stats = (
+        filtered_stats
+        .reindex(range(7), fill_value=0))
 
-    stats.plot(kind='bar', legend=False)
+    filtered_stats.plot(kind='bar', legend=False)
     plt.xlabel("Day")
     plt.ylabel("Observations")
     plt.title("Observations per day (Last 7 days)")
