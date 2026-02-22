@@ -8,7 +8,7 @@ exclude = ["Dog", "Human non-vocal", "Engine", "Human vocal",
             "Gevlekte Diamantvogel","Geelstuitdoornsnavel","Gestreepte Bosuil",
             "Hoatzin","Kleine Kauailijster","Oeraluil","Roodkapzanger","Pinyongaai",
             "Rosse Bladspeurder","Oehoe","Gray Wolf","Amerikaanse Oehoe",
-            "Ponderosadwergooruil","Rotsduif"]
+            "Ponderosadwergooruil","Rotsduif", "Porseleinhoen", "Roerdomp"]
 
 def readCSV():
     df = pd.read_csv("data/output.csv")

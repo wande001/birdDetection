@@ -145,7 +145,7 @@ def audio_callback(indata, frames, time_info, status):
                 start_time = r["start_time"]
                 end_time = r["end_time"]
 
-                save_bird_audio(audio, start_time, end_time, species)
+                #save_bird_audio(audio, start_time, end_time, species)
 
                 save_detection(species, conf)
 
