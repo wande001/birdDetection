@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="summary-of-the-week" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-the-week">Summary of the week</h2>
-<div id="91fb740c" class="cell" data-execution_count="1">
+<div id="7fdc818b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>CSV_PATH <span class="op">=</span> <span class="st">"data/output.csv"</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(CSV_PATH)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'timestamp'</span>])</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>now <span class="op">=</span> datetime.utcnow()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>now <span class="op">=</span> datetime.now()</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Week summary</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df_last_week <span class="op">=</span> df[df[<span class="st">'timestamp'</span>] <span class="op">&gt;</span> now <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">7</span>)]</span>
@@ -292,14 +292,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 56                     Wulp      1
 57        Zwarte Roodstaart      1</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2722/196322435.py:8: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  now = datetime.utcnow()</code></pre>
-</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="week_summary_files/figure-html/cell-2-output-3.png" width="593" height="453" class="figure-img"></p>
+<p><img src="week_summary_files/figure-html/cell-2-output-2.png" width="593" height="453" class="figure-img"></p>
 </figure>
 </div>
 </div>
