@@ -35,7 +35,7 @@ DB_FILE = "detections.db"
 # ======================================================
 # DATABASE SETUP
 # ======================================================
-CSV_FILE = "data/output.csv"
+CSV_FILE = "../data/output.csv"
 
 # Helper: read all rows from CSV
 def read_csv():
@@ -92,11 +92,11 @@ def save_bird_audio(indata, start_sec, end_sec, species):
     segment = indata[start_i:end_i]  # slice the audio
 
     # Ensure output dir exists
-    os.makedirs("detections", exist_ok=True)
+    os.makedirs("../../detections", exist_ok=True)
 
     # File name
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    filename = f"detections/{species}_{timestamp}.wav"
+    filename = f"../../detections/{species}_{timestamp}.wav"
 
     # Save WAV
     write(filename, SAMPLE_RATE, segment.astype(np.float32))
@@ -124,7 +124,7 @@ def audio_callback(indata, frames, time_info, status):
         from scipy.io.wavfile import write
         write(temp_audio.name, SAMPLE_RATE, indata[:, 0])
         # Write the same audio data to another disk
-        with open("recordings/audio_" + now + ".wav", "wb") as f:
+        with open("../../recordings/audio_" + now + ".wav", "wb") as f:
             write(f, SAMPLE_RATE, indata[:, 0])
         rec = Recording(path=temp_audio.name, analyzer=analyzer)
 
@@ -182,7 +182,7 @@ def auto_git_committer(fileName=CSV_FILE):
 
     while True:
         now = datetime.datetime.now()
-        current_hour = now.strftime("%Y%m%d%H")
+        current_hour = now.strftime("%Y%m%d%H%M")
 
         # Commit once per hour
         if current_hour != last_commit_hour:
