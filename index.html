@@ -120,17 +120,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#load-data" id="toc-load-data" class="nav-link active" data-scroll-target="#load-data">— Load Data —</a></li>
-  <li><a href="#convert-datetime" id="toc-convert-datetime" class="nav-link" data-scroll-target="#convert-datetime">— Convert datetime —</a></li>
-  <li><a href="#filter-last-hour" id="toc-filter-last-hour" class="nav-link" data-scroll-target="#filter-last-hour">— Filter last hour —</a></li>
-  <li><a href="#filter-high-confidence" id="toc-filter-high-confidence" class="nav-link" data-scroll-target="#filter-high-confidence">— Filter high confidence —</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -154,27 +145,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>import pandas as pd from datetime import datetime, timedelta</p>
-<p>print(“These are all the raw observations from the last hour.”)</p>
-<section id="load-data" class="level1">
-<h1>— Load Data —</h1>
-<p>df = pd.read_csv(“data/output.csv”)</p>
-</section>
-<section id="convert-datetime" class="level1">
-<h1>— Convert datetime —</h1>
-<p>df[‘start’] = pd.to_datetime(df[‘timestamp’])</p>
-</section>
-<section id="filter-last-hour" class="level1">
-<h1>— Filter last hour —</h1>
-<p>one_hour_ago = datetime.now() - timedelta(hours=1.02) df_last_hour = df[df[‘start’] &gt;= one_hour_ago]</p>
-</section>
-<section id="filter-high-confidence" class="level1">
-<h1>— Filter high confidence —</h1>
-<p>df_last_hour = df_last_hour[df_last_hour[‘confidence’] &gt; 0.75]</p>
-<p>if len(df_last_hour) &gt;0: print(df_last_hour) else: print(“No observations in the last hour”) ```</p>
+<div id="8b864123" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>These are all the raw observations from the last hour.
+No observations in the last hour</code></pre>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script>
