@@ -7,7 +7,9 @@ execute:
 import pandas as pd
 from datetime import datetime, timedelta
 
-print("These are all the raw observations from the last hour.")
+exclude = ["Dog", "Human non-vocal", "Engine"]
+
+print("These are all the raw observations from the last hour. Updated at %s" %(datetime.now().strftime("%Y-%m-%d %H:%M")))
 
 # --- Load Data ---
 df = pd.read_csv("data/output.csv")
@@ -16,15 +18,16 @@ df = pd.read_csv("data/output.csv")
 df['start'] = pd.to_datetime(df['timestamp'])
 
 # --- Filter last hour ---
-one_hour_ago = datetime.now() - timedelta(hours=1.02)
+one_hour_ago = datetime.now() - timedelta(minutes=60)
 df_last_hour = df[df['start'] >= one_hour_ago]
 
 # --- Filter high confidence ---
 df_last_hour = df_last_hour[df_last_hour['confidence'] > 0.75]
 
 if len(df_last_hour) >0:
-    for _, row in df_last_hour.iterrows():
-        print(f"{row['start']} — {row['species']} (confidence: {row['confidence']:.2f})")
+    for _, row in df_last_hour.iloc[::-1].iterrows():
+        if row['species'] not in exclude:
+            print(f"{row['start']} — {row['species']} (confidence: {row['confidence']:.2f})")
 else:
     print("No observations in the last hour")
 ```

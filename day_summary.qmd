@@ -8,42 +8,18 @@ execute:
 import pandas as pd
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
+from birdFunctions import *
 
-CSV_PATH = "data/output.csv"
-df = pd.read_csv(CSV_PATH)
-df['timestamp'] = pd.to_datetime(df['timestamp'])
-now = datetime.now()
+selectedData = filterData(minLim = 60*24)
 
-# Week summary
-df_last_week = df[df['timestamp'] > now - timedelta(days=1)]
+result = aggregateData(selectedData)
 
-# --- Convert datetime ---
-df_last_week['start'] = pd.to_datetime(df['timestamp'])
+if len(result) > 0:
 
-# --- Filter high confidence ---
-df_last_week = df_last_week[df_last_week['confidence'] > 0.75]
-
-# --- Aggregate counts per species ---
-result = (
-    df_last_week
-    .groupby("species")
-    .size()
-    .reset_index(name="count")
-    .sort_values("count", ascending=False)
-    .reset_index(drop=True) 
-)
-
-filtered = result[~result["species"].isin(["Human-vocal", "Engine"])]
-
-if len(filtered) > 0:
-
-    for _, row in filtered.iterrows():
+    for _, row in result.iterrows():
         print(f"{row['species']} — {row['count']}")
 
-    stats = df_last_week.groupby(df_last_week['timestamp'].dt.hour).size()
-    stats = (
-        stats
-        .reindex(range(24), fill_value=0))
+    stats = groupByHour(selectedData)
 
     stats.plot(kind='bar', legend=False)
     plt.xlabel("Hour of Day")
