@@ -4,11 +4,12 @@ execute:
   echo: false
 ---
 
-These are all the raw observations from the last hour.
  
  ```{python}
 import pandas as pd
 from datetime import datetime, timedelta
+
+print("These are all the raw observations from the last hour.")
 
 # --- Load Data ---
 df = pd.read_csv("data/output.csv")
