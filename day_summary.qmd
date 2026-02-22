@@ -1,9 +1,8 @@
 ---
 title: "Summary of the Day"
 ---
----
-title: "Week Summary"
----
+## Summary of the day
+
 ```{python}
 import pandas as pd
 from datetime import datetime, timedelta

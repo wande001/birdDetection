@@ -1,9 +1,9 @@
 ---
-title: "Hourly Activity (Last Day)"
+title: "Summary statistics"
 ---
----
-title: "Week Summary"
----
+## Summary statistics
+
+
 ```{python}
 import pandas as pd
 from datetime import datetime, timedelta

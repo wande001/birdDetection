@@ -1,6 +1,9 @@
 ---
 title: "Week Summary"
 ---
+
+## Summary of the week
+
 ```{python}
 import pandas as pd
 from datetime import datetime, timedelta
@@ -43,7 +46,7 @@ if len(filtered) > 0:
     plt.title("Observations per Hour (Last 7 days)")
     plt.show()
 else:
-    print("No observations in the last hour")
+    print("No observations in the last week")
 
 
 ```

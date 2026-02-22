@@ -23,5 +23,8 @@ df_last_hour = df[df['start'] >= one_hour_ago]
 # --- Filter high confidence ---
 df_last_hour = df_last_hour[df_last_hour['confidence'] > 0.75]
 
-df_last_hour
+if len(df_last_hour) >0:
+    print(df_last_hour)
+else:
+    print("No observations in the last hour")
 ```
