@@ -22,7 +22,6 @@ def filterData(minLim=60, confidence_threshold=0.75):
     df_selection = df[df['timestamp'] >= timeFrame]
     # --- Filter high confidence ---
     df_selection = df_selection[df_selection['confidence'] > confidence_threshold]
-    exclude = ["Dog", "Human non-vocal", "Engine", "Human-vocal"]
     df_selection = df_selection[~df_selection['species'].isin(exclude)]
     return df_selection
 
