@@ -182,7 +182,7 @@ def auto_git_committer(fileName=CSV_FILE):
 
     while True:
         now = datetime.datetime.now()
-        current_hour = now.strftime("%Y%m%d%H%M")
+        current_hour = now.strftime("%Y%m%d%H")
 
         # Commit once per hour
         if current_hour != last_commit_hour:
