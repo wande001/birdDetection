@@ -1,7 +1,5 @@
 ---
 title: "BirdNET Homepage"
-execute:
-  echo: false
 ---
 
  
