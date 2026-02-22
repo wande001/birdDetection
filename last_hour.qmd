@@ -36,7 +36,8 @@ result = (
 
 if len(result) > 0:
 
-    print(result)
+    for _, row in result.iterrows():
+        print(f"{row['species']} — {row['count']}")
 
     stats = df_last_hour.groupby(df_last_hour['timestamp'].dt.minute).size()
     stats = (

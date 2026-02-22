@@ -37,8 +37,8 @@ filtered = result[~result["species"].isin(["Human-vocal", "Engine"])]
 
 if len(filtered) > 0:
 
-    print(filtered)
-
+    for _, row in filtered.iterrows():
+        print(f"{row['species']} — {row['count']}")
     stats = df_last_week.groupby(df_last_week['timestamp'].dt.hour).size()
 
     stats = (
