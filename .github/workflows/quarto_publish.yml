@@ -14,12 +14,7 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2 
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-
+        
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -29,9 +24,7 @@ jobs:
           # version: 0.9.600
       
       # add software dependencies here
-        run: |
-          pip install -r requirements.txt || true
-
+      - run: pip pandas matplotlib jupyter
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
