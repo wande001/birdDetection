@@ -1,7 +1,14 @@
 import pandas as pd
 from datetime import datetime, timedelta
 
-exclude = ["Dog", "Human non-vocal", "Engine"]
+exclude = ["Dog", "Human non-vocal", "Engine", "Human vocal",
+           "Trompetzwaan", "Viskraai", "Waaierhoen", "Prairiehoen",
+           "Elzenfeetiran", "Amerikaanse Nachtzwaluw", "Cederpestvogel",
+            "Casarca", "Cassins Vireo", "Blonde Ruiter","Kleine Torenvalk",
+            "Gevlekte Diamantvogel","Geelstuitdoornsnavel","Gestreepte Bosuil",
+            "Hoatzin","Kleine Kauailijster","Oeraluil","Roodkapzanger","Pinyongaai",
+            "Rosse Bladspeurder","Oehoe","Gray Wolf","Amerikaanse Oehoe",
+            "Ponderosadwergooruil","Rotsduif"]
 
 def readCSV():
     df = pd.read_csv("data/output.csv")
