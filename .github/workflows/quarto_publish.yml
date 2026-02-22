@@ -2,7 +2,7 @@ on:
   push:
     branches: main
   workflow_run:
-      workflows: [Update visibility]
+      workflows: ["Update visibility"]
       types:
         - completed
 
@@ -13,8 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2 
-        
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0        
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
@@ -24,10 +25,11 @@ jobs:
           # version: 0.9.600
       
       # add software dependencies here
-      - run: pip install pandas matplotlib jupyter
-      - name: Publish to GitHub Pages (and render)
+      - run: pip install pandas matplotlib jupyter numpy
+      - name: Render & Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+
