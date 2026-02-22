@@ -1,5 +1,7 @@
 ---
 title: "Week Summary"
+execute:
+  echo: false
 ---
 
 ## Summary of the week

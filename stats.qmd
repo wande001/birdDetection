@@ -1,5 +1,7 @@
 ---
 title: "Summary statistics"
+execute:
+  echo: false
 ---
 ## Summary statistics
 
@@ -12,7 +14,7 @@ import matplotlib.pyplot as plt
 CSV_PATH = "data/output.csv"
 df = pd.read_csv(CSV_PATH)
 df['timestamp'] = pd.to_datetime(df['timestamp'])
-now = datetime.utcnow()
+now = datetime.now()
 
 # Stats: observations per hour (last day)
 last_day_df = df[df['timestamp'] > now - timedelta(days=7)]
