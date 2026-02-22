@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="summary-of-the-day" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-the-day">Summary of the day</h2>
-<div id="131f196c" class="cell" data-execution_count="1">
+<div id="ca14d6c5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>CSV_PATH <span class="op">=</span> <span class="st">"data/output.csv"</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(CSV_PATH)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'timestamp'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'timestamp'</span>])</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>now <span class="op">=</span> datetime.utcnow()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>now <span class="op">=</span> datetime.now()</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Week summary</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df_last_week <span class="op">=</span> df[df[<span class="st">'timestamp'</span>] <span class="op">&gt;</span> now <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">1</span>)]</span>
@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1                Pimpelmees    253
 2                    Ekster    176
 3                   Huismus    175
-4                 Roodborst     78
+4                 Roodborst     76
 5                    Putter     45
 6                   Kolgans     31
 7                     Merel     22
@@ -248,47 +248,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 10          Kleine Rietgans     11
 11                 Meerkoet     10
 12                 Glanskop      6
-13                   Bosuil      4
-14                     Sijs      4
-15                Koperwiek      4
+13                     Sijs      4
+14                Koperwiek      4
+15                   Bosuil      4
 16                  Ringmus      4
-17                  Buizerd      3
-18                Groenling      3
+17                Groenling      3
+18                  Buizerd      3
 19                   Smient      3
 20             Zwarte Kraai      2
-21                 Roerdomp      2
-22            Blauwe Reiger      2
-23            Elzenfeetiran      2
-24                 Houtduif      2
-25               Boompieper      1
+21            Blauwe Reiger      2
+22                 Roerdomp      2
+23                 Houtduif      2
+24            Elzenfeetiran      2
+25               Boomklever      1
 26  Amerikaanse Nachtzwaluw      1
-27        Bonte Strandloper      1
-28               Boomklever      1
-29              Boomkruiper      1
-31            Cassins Vireo      1
-32                Bosruiter      1
-33                 Kokmeeuw      1
-34     Geelstuitdoornsnavel      1
-35                   Fazant      1
-36         Europese Kanarie      1
-37       Grote Bonte Specht      1
-38                 IJsvogel      1
-39                  Ransuil      1
-40            Roodkapzanger      1
-41                  Spreeuw      1
-42             Trompetzwaan      1
-43                 Viskraai      1
-44             Wintertaling      1
-45                     Wulp      1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2714/3767121038.py:8: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  now = datetime.utcnow()</code></pre>
+27              Boomkruiper      1
+28               Boompieper      1
+30            Cassins Vireo      1
+31                Bosruiter      1
+32                 Kokmeeuw      1
+33     Geelstuitdoornsnavel      1
+34                   Fazant      1
+35         Europese Kanarie      1
+36       Grote Bonte Specht      1
+37                 IJsvogel      1
+38                  Ransuil      1
+39            Roodkapzanger      1
+40                  Spreeuw      1
+41             Trompetzwaan      1
+42                 Viskraai      1
+43             Wintertaling      1
+44                     Wulp      1</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="day_summary_files/figure-html/cell-2-output-3.png" width="593" height="453" class="figure-img"></p>
+<p><img src="day_summary_files/figure-html/cell-2-output-2.png" width="593" height="453" class="figure-img"></p>
 </figure>
 </div>
 </div>
