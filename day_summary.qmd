@@ -40,11 +40,11 @@ if len(filtered) > 0:
     print(filtered)
 
     stats = df_last_week.groupby(df_last_week['timestamp'].dt.hour).size()
-    filtered_stats = (
-        filtered_stats
+    stats = (
+        stats
         .reindex(range(24), fill_value=0))
 
-    filtered_stats.plot(kind='bar', legend=False)
+    stats.plot(kind='bar', legend=False)
     plt.xlabel("Hour of Day")
     plt.ylabel("Observations")
     plt.title("Observations per Hour (Last day)")
