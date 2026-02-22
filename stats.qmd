@@ -9,29 +9,18 @@ execute:
 import pandas as pd
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
-import numpy
+from birdFunctions import *
 
-CSV_PATH = "data/output.csv"
-df = pd.read_csv(CSV_PATH)
-df['timestamp'] = pd.to_datetime(df['timestamp'])
-now = datetime.now()
+selectedData = filterData(minLim = 60*24*7)
 
-# Stats: observations per hour (last day)
-last_day_df = df[df['timestamp'] > now - timedelta(days=7)]
+result = aggregateData(selectedData)
 
-# --- Aggregate counts per species ---
-result = (
-    last_day_df
-    .groupby("species")
-    .size()
-    .reset_index(name="count")
-    .sort_values("count", ascending=False)
-    .reset_index(drop=True) 
-)
+if len(result) > 0:
 
-if len(result) >0:
+    for _, row in result.iterrows():
+        print(f"{row['species']} — {row['count']}")
 
-    stats = last_day_df.groupby(last_day_df['timestamp'].dt.hour).size()
+    stats = groupByHour(selectedData)
 
     stats.plot(kind='bar', legend=False)
     plt.xlabel("Hour of Day")
@@ -41,7 +30,7 @@ if len(result) >0:
 
     for i in range(10):
         bird = result["species"].iloc[i]
-        filtered = last_day_df[last_day_df["species"] == bird]
+        filtered = selectedData[selectedData["species"] == bird]
         filtered_stats = filtered.groupby(filtered['timestamp'].dt.hour).size()
         filtered_stats = (
         filtered_stats

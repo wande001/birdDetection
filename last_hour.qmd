@@ -8,41 +8,18 @@ execute:
 import pandas as pd
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
+from birdFunctions import *
 
-# --- Load Data ---
-df = pd.read_csv("data/output.csv")
-df['timestamp'] = pd.to_datetime(df['timestamp'])
-now = datetime.now()
+selectedData = filterData(minLim = 60)
 
-# --- Convert datetime ---
-df['start'] = pd.to_datetime(df['timestamp'])
-
-# --- Filter last hour ---
-one_hour_ago = datetime.now() - timedelta(hours=1.02)
-df_last_hour = df[df['start'] >= one_hour_ago]
-
-# --- Filter high confidence ---
-df_last_hour = df_last_hour[df_last_hour['confidence'] > 0.75]
-
-# --- Aggregate counts per species ---
-result = (
-    df_last_hour
-    .groupby("species")
-    .size()
-    .reset_index(name="count")
-    .sort_values("count", ascending=False)
-    .reset_index(drop=True) 
-)
+result = aggregateData(selectedData)
 
 if len(result) > 0:
 
     for _, row in result.iterrows():
         print(f"{row['species']} — {row['count']}")
 
-    stats = df_last_hour.groupby(df_last_hour['timestamp'].dt.minute).size()
-    stats = (
-        stats
-        .reindex(range(60), fill_value=0))
+    stats = groupByMinute(selectedData)
 
     stats.plot(kind='bar', legend=False)
     plt.xlabel("Hour of Day")
