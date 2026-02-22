@@ -39,7 +39,7 @@ if len(filtered) > 0:
 
     print(filtered)
 
-    stats = last_day_week.groupby(last_day_week['timestamp'].dt.hour).size()
+    stats = df_last_week.groupby(df_last_week['timestamp'].dt.hour).size()
 
     stats.plot(kind='bar', legend=False)
     plt.xlabel("Hour of Day")
