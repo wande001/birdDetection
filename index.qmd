@@ -9,12 +9,14 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 from birdFunctions import *
 
-selectedData = filterData(minLim = 60)
+selectedData = filterData(minLim = 600)
+
+print("These are the last 50 observations, updated at %s" %(datetime.now().strftime("%Y-%m-%d %H:%M")))
 
 if len(selectedData) >0:
-    for _, row in selectedData.iloc[::-1].iterrows():
+    for _, row in selectedData.tail(50).iloc[::-1].iterrows():
         if row['species'] not in exclude:
             print(f"{row['timestamp']} — {row['species']} (confidence: {row['confidence']:.2f})")
 else:
-    print("No observations in the last hour")
+    print("No observations in the ten hours")
 ```
