@@ -138,6 +138,8 @@ def audio_callback(indata, frames, time_info, status):
             # Skip human vocalizations
             if species.lower() == "human vocal":
                 continue
+            if species.lower() == "porseleinhoen":
+                continue
             if conf >= CONFIDENCE_THRESHOLD:
                 print(f"{species}: {conf:.2f}")
 
