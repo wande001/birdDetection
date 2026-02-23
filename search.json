@@ -11,21 +11,21 @@
     "href": "day_summary.html",
     "title": "Summary of the Day",
     "section": "",
-    "text": "Heggenmus — 123\nRoodborst — 69\nPimpelmees — 31\nKolgans — 21\nBrandgans — 15\nEkster — 8\nMeerkoet — 5\nWoudaap — 3\nKleine Rietgans — 3\nWaterral — 2\nWintertaling — 2\nZanglijster — 2\nWilde Zwaan — 2\nKerkuil — 1\nKwartel — 1\nKraanvogel — 1\nKoperwiek — 1\nKoolmees — 1\nKievit — 1\nDwergooruil — 1\nHoutduif — 1\nPutter — 1\nVerreaux' Duif — 1\nSnor — 1\nReuzenstern — 1\nRaaf — 1\nOeverloper — 1\nWaterhoen — 1\nWielewaal — 1\nZwarte Roodstaart — 1"
+    "text": "Heggenmus — 123\nRoodborst — 69\nPimpelmees — 31\nKolgans — 21\nBrandgans — 15\nEkster — 8\nMeerkoet — 4\nKleine Rietgans — 3\nWoudaap — 3\nWaterral — 2\nWilde Zwaan — 2\nZanglijster — 2\nKwartel — 1\nKraanvogel — 1\nKoperwiek — 1\nKoolmees — 1\nHoutduif — 1\nKerkuil — 1\nDwergooruil — 1\nOeverloper — 1\nSnor — 1\nReuzenstern — 1\nRaaf — 1\nPutter — 1\nWielewaal — 1\nWaterhoen — 1\nVerreaux' Duif — 1\nZwarte Roodstaart — 1"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "BirdNET Homepage",
     "section": "",
-    "text": "2026-02-22 23:10:35.113890 — Verreaux' Duif (confidence: 0.90)\n2026-02-22 23:03:44.965100 — Kraanvogel (confidence: 0.94)\n2026-02-22 22:25:16.652433 — Raaf (confidence: 0.79)"
+    "text": "2026-02-22 23:10:35.113890 — Verreaux' Duif (confidence: 0.90)\n2026-02-22 23:03:44.965100 — Kraanvogel (confidence: 0.94)"
   },
   {
     "objectID": "last_hour.html",
     "href": "last_hour.html",
     "title": "Last Hour Observations",
     "section": "",
-    "text": "Kraanvogel — 1\nRaaf — 1\nVerreaux' Duif — 1"
+    "text": "Kraanvogel — 1\nVerreaux' Duif — 1"
   },
   {
     "objectID": "week_summary.html",
