@@ -58,7 +58,7 @@ def makeHeatmap(data, timeFrame="5min"):
     # Determine the last hour time range
     if timeFrame == "5min":
         data["minute"] = data["timestamp"].dt.floor(timeFrame)
-        end_time = pd.Timestamp.now().floor(timeFrame) + pd.Timedelta(minutes=5)
+        end_time = pd.Timestamp.now().floor(timeFrame) + pd.Timedelta(minutes=60)
         start_time = end_time - pd.Timedelta(minutes=65) + pd.Timedelta(minutes=5)
         all_blocks = pd.date_range(start=start_time, end=end_time, freq=timeFrame)
     elif timeFrame == "hour":
