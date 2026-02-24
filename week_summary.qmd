@@ -19,20 +19,7 @@ if len(result) > 0:
     for _, row in result.iterrows():
         print(f"{row['species']} — {row['count']}")
 
-    stats = groupByHour(selectedData)
-
-    stats.plot(kind='bar', legend=False)
-    plt.xlabel("Hour of Day")
-    plt.ylabel("Observations")
-    plt.title("Observations per Hour (Last day)")
-    plt.show()
-
-    stats = groupByDay(selectedData)
-    stats.plot(kind='bar', legend=False)
-    plt.xlabel("Day")
-    plt.ylabel("Observations")
-    plt.title("Observations per day (Last 7 days)")
-    plt.show()
+    makeHeatmap(selectedData, timeFrame="day")
 
 else:
     print("No observations in the last week")

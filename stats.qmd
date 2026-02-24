@@ -7,11 +7,9 @@ execute:
 
 ```{python}
 import pandas as pd
-from datetime import datetime, timedelta
-import matplotlib.pyplot as plt
 from birdFunctions import *
 
-selectedData = filterData(minLim = 60*24*7)
+selectedData = filterData(minLim = 60*24*7*31)
 
 result = aggregateData(selectedData)
 
@@ -20,28 +18,12 @@ if len(result) > 0:
     for _, row in result.iterrows():
         print(f"{row['species']} — {row['count']}")
 
-    stats = groupByHour(selectedData)
+    makeDailyCycleHeatmap(selectedData)
 
-    stats.plot(kind='bar', legend=False)
-    plt.xlabel("Hour of Day")
-    plt.ylabel("Observations")
-    plt.title("Observations per Hour (Last 7 days)")
-    plt.show()
+    makeHeatmap(selectedData, timeFrame="week")
 
-    for i in range(10):
-        bird = result["species"].iloc[i]
-        filtered = selectedData[selectedData["species"] == bird]
-        filtered_stats = filtered.groupby(filtered['timestamp'].dt.hour).size()
-        filtered_stats = (
-        filtered_stats
-        .reindex(range(24), fill_value=0))
-        #filtered_stats = filtered_stats/filtered_stats.max()
-        filtered_stats.plot(kind="line", label = bird)    
-    plt.xlabel("Hour of Day")
-    plt.ylabel("Observations")
-    plt.title("Observations per Hour (Last 7 days)")
-    plt.legend()
-    plt.show()
+    shannon_diversity(selectedData)
+
 else:
     print("No observations in the last week")
 

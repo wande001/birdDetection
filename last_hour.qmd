@@ -5,27 +5,20 @@ execute:
 ---
 
 ```{python}
-import pandas as pd
-from datetime import datetime, timedelta
-import matplotlib.pyplot as plt
 from birdFunctions import *
 
-selectedData = filterData(minLim = 60)
+selectedData = filterData(minLim=65)
 
 result = aggregateData(selectedData)
 
 if len(result) > 0:
 
+    # Print species totals
     for _, row in result.iterrows():
         print(f"{row['species']} — {row['count']}")
 
-    stats = groupByMinute(selectedData)
+    makeHeatmap(selectedData, timeFrame="5min")
 
-    stats.plot(kind='bar', legend=False)
-    plt.xlabel("Hour of Day")
-    plt.ylabel("Observations")
-    plt.title("Observations per Minute (Last hour)")
-    plt.show()
 else:
     print("No observations in the last hour")
 ```
