@@ -104,7 +104,7 @@ def makeHeatmap(data, timeFrame="5min"):
     if timeFrame == "week": plt.figure(figsize=(5, 20))
 
     # ---- PLOT WITH MATPLOTLIB ONLY ----
-    plt.imshow(heat_matrix, aspect="auto", cmap="Blues", origin="lower")
+    plt.imshow(heat_matrix, aspect="auto", vmin=0, vmax=1, cmap="Blues", origin="lower")
 
     # Add colorbar
     #plt.colorbar(label="Observation Count")
