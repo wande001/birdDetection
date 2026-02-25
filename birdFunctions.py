@@ -24,7 +24,7 @@ def readCSV():
 def filterData(minLim=60, confidence_threshold=0.75):
     # --- Filter last hour ---
     df = readCSV()
-    endTime = df['timestamp'].iloc[-5].ceil("60min")
+    endTime = (df['timestamp'].iloc[-1] - pd.Timedelta(minutes=2)).ceil("60min")
     timeFrame = endTime - timedelta(minutes=minLim)
     df_selection = df[df['timestamp'] >= timeFrame]
     # --- Filter high confidence ---
@@ -59,12 +59,12 @@ def makeHeatmap(data, timeFrame="5min"):
     # Determine the last hour time range
     if timeFrame == "5min":
         data["minute"] = data["timestamp"].dt.floor(timeFrame)
-        end_time = data['timestamp'].iloc[-1].ceil("60min")
+        end_time = (data['timestamp'].iloc[-1] - pd.Timedelta(minutes=5)).ceil("60min")
         start_time = end_time - pd.Timedelta(minutes=65) + pd.Timedelta(minutes=5)
         all_blocks = pd.date_range(start=start_time, end=end_time, freq=timeFrame)
     elif timeFrame == "hour":
         data["minute"] = data["timestamp"].dt.floor("60min")
-        end_time = data['timestamp'].iloc[-1].ceil("60min")
+        end_time = (data['timestamp'].iloc[-1] - pd.Timedelta(minutes=5)).ceil("60min")
         start_time = end_time - pd.Timedelta(minutes=60*24) + pd.Timedelta(minutes=60)
         all_blocks = pd.date_range(start=start_time, end=end_time, freq="60min")
     elif timeFrame == "day":
