@@ -7,7 +7,7 @@ execute:
 ```{python}
 from birdFunctions import *
 
-selectedData = filterData(minLim=65)
+selectedData = filterData(minLim=60)
 
 result = aggregateData(selectedData)
 

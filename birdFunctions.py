@@ -24,7 +24,8 @@ def readCSV():
 def filterData(minLim=60, confidence_threshold=0.75):
     # --- Filter last hour ---
     df = readCSV()
-    timeFrame = datetime.now() - timedelta(minutes=minLim)
+    endTime = df['timestamp'].iloc[-1].ceil("60min")
+    timeFrame = endTime - timedelta(minutes=minLim)
     df_selection = df[df['timestamp'] >= timeFrame]
     # --- Filter high confidence ---
     df_selection = df_selection[df_selection['confidence'] > confidence_threshold]
@@ -58,22 +59,22 @@ def makeHeatmap(data, timeFrame="5min"):
     # Determine the last hour time range
     if timeFrame == "5min":
         data["minute"] = data["timestamp"].dt.floor(timeFrame)
-        end_time = pd.Timestamp.now().floor(timeFrame) + pd.Timedelta(minutes=60)
+        end_time = data['timestamp'].iloc[-1].ceil("60min")
         start_time = end_time - pd.Timedelta(minutes=65) + pd.Timedelta(minutes=5)
         all_blocks = pd.date_range(start=start_time, end=end_time, freq=timeFrame)
     elif timeFrame == "hour":
         data["minute"] = data["timestamp"].dt.floor("60min")
-        end_time = pd.Timestamp.now().floor("60min")
+        end_time = data['timestamp'].iloc[-1].ceil("60min")
         start_time = end_time - pd.Timedelta(minutes=60*24) + pd.Timedelta(minutes=60)
         all_blocks = pd.date_range(start=start_time, end=end_time, freq="60min")
     elif timeFrame == "day":
         data["minute"] = data["timestamp"].dt.floor("1440min")
-        end_time = pd.Timestamp.now().floor("1440min")
+        end_time = data['timestamp'].iloc[-1].ceil("1440min")
         start_time = end_time - pd.Timedelta(minutes=60*24*7) + pd.Timedelta(minutes=60*24)
         all_blocks = pd.date_range(start=start_time, end=end_time, freq="1440min")
     elif timeFrame == "week":
         data["minute"] = data["timestamp"].dt.floor("1440min")
-        end_time = pd.Timestamp.now().floor("1440min")
+        end_time = data['timestamp'].iloc[-1].ceil("1440min")
         start_time = data["timestamp"].dt.floor("1440min").min()
         all_blocks = pd.date_range(start=start_time, end=end_time, freq="1440min")
 
@@ -97,10 +98,10 @@ def makeHeatmap(data, timeFrame="5min"):
     heat_matrix = heatmap_normalized.values
 
     # Create figure
-    if timeFrame == "5min": plt.figure(figsize=(6, 6))
-    if timeFrame == "hour": plt.figure(figsize=(6, 12))
-    if timeFrame == "day": plt.figure(figsize=(6, 12))
-    if timeFrame == "week": plt.figure(figsize=(6, 20))
+    if timeFrame == "5min": plt.figure(figsize=(5, 6))
+    if timeFrame == "hour": plt.figure(figsize=(5, 12))
+    if timeFrame == "day": plt.figure(figsize=(5, 12))
+    if timeFrame == "week": plt.figure(figsize=(5, 20))
 
     # ---- PLOT WITH MATPLOTLIB ONLY ----
     plt.imshow(heat_matrix, aspect="auto", cmap="Blues", origin="lower")
@@ -135,7 +136,7 @@ def shannon_diversity(data):
     diversity = hour_groups.apply(diversityLoop)
 
     # Plot
-    plt.figure(figsize=(6,5))
+    plt.figure(figsize=(5,5))
     diversity.plot()
     plt.xlabel('Hour')
     plt.ylabel('Acoustic Diversity')
@@ -168,7 +169,7 @@ def makeDailyCycleHeatmap(data):
     heat_matrix = heatmap_normalized.values
 
     # Plot
-    plt.figure(figsize=(6,20))
+    plt.figure(figsize=(5,20))
     plt.imshow(heat_matrix, aspect='auto', cmap='Blues', origin='lower')
 
     # X-axis: hours
