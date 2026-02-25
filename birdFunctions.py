@@ -24,7 +24,7 @@ def readCSV():
 def filterData(minLim=60, confidence_threshold=0.75):
     # --- Filter last hour ---
     df = readCSV()
-    endTime = df['timestamp'].iloc[-1].ceil("60min")
+    endTime = df['timestamp'].iloc[-5].ceil("60min")
     timeFrame = endTime - timedelta(minutes=minLim)
     df_selection = df[df['timestamp'] >= timeFrame]
     # --- Filter high confidence ---
