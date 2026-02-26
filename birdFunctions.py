@@ -14,7 +14,16 @@ exclude = ["Dog", "Human non-vocal", "Engine", "Human vocal",
             "Amerikaanse Woudaap", "Geelkopamazone", "Zwarte Dwergral", "Southern Boobook",
             "Roodkopspecht", "Lesson's Motmot","Chinese Spoorkoekoek","Berkenfeetiran",
             "Canadese Boomklever", "Avonddikbek", "Japanse Koolmees", "Carolina-eend",
-            "Haakbek", "Grijze Mees", "Fireworks", "Verreaux' Duif", "Europese Kanarie"]
+            "Haakbek", "Grijze Mees", "Fireworks", "Verreaux' Duif", "Europese Kanarie",
+            "Zwarte Zijdevliegenvanger", "Zeledonia", "Zaaguil", "Witbandsijs",
+            "Taigavliegenvanger","Says Phoebe","Purperkeelvruchtenkraai","Tropische Koningstiran",
+            "Oesserifitis","Nuttalls Specht","Maskergeelvink","Mantsjoerijse Woudaap","Louisianatangare",
+            "Mexicaanse Roodmus","Oost-Amerikaanse Winterkoning","Spaanse Mus","Maskertroepiaal","Alpengierzwaluw","Bicknells Dwerglijster","Blauwkeelsialia",
+            "Kleine Zwaan","Dwerggors","Carolinamees","Kleine Geelpootruiter","Goudsijs","Amerikaanse Matkop",
+            "Bergsolitaire","Barking Treefrog","Bells Gors","American Bullfrog","Huttons Vireo",
+            "Kaapse Krombek","Eikelspecht","Cassins Koningstiran","Dwergooruil","Canadese Zanger",
+            "Bruinkapstruikgors","Dikbekkraai","Gestreepte Vliegenvanger","Himalayan Shrike-Babbler",
+            "Geelgroene Vireo","Geelkeelzanger","Ekstergaai","Grijskeeltiran","Grijspootsjakohoen","Kastanjerugmees","Grote Renkoekoek"]
 
 def readCSV():
     df = pd.read_csv("data/output.csv")
@@ -100,9 +109,9 @@ def makeHeatmap(data, timeFrame="5min"):
 
     # Create figure
     if timeFrame == "5min": plt.figure(figsize=(5, 6))
-    if timeFrame == "hour": plt.figure(figsize=(5, 14))
-    if timeFrame == "day": plt.figure(figsize=(5, 14))
-    if timeFrame == "week": plt.figure(figsize=(5, 25))
+    if timeFrame == "hour": plt.figure(figsize=(5, 16))
+    if timeFrame == "day": plt.figure(figsize=(5, 16))
+    if timeFrame == "week": plt.figure(figsize=(5, 30))
 
     # ---- PLOT WITH MATPLOTLIB ONLY ----
     plt.imshow(heat_matrix, aspect="auto", vmin=0, vmax=1, cmap="Blues", origin="lower")
@@ -169,7 +178,7 @@ def makeDailyCycleHeatmap(data):
     heat_matrix = heatmap_normalized.values
 
     # Plot
-    plt.figure(figsize=(5,25))
+    plt.figure(figsize=(5,30))
     plt.imshow(heat_matrix, aspect='auto', cmap='Blues', origin='lower')
 
     # X-axis: hours
