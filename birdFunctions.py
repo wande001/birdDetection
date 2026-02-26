@@ -69,12 +69,12 @@ def makeHeatmap(data, timeFrame="5min"):
         all_blocks = pd.date_range(start=start_time, end=end_time, freq="60min")
     elif timeFrame == "day":
         data["minute"] = data["timestamp"].dt.floor("1440min")
-        end_time = data['timestamp'].iloc[-1].ceil("1440min")
+        end_time = (data['timestamp'].iloc[-1] - pd.Timedelta(minutes=5)).floor("1440min")
         start_time = end_time - pd.Timedelta(minutes=60*24*7) + pd.Timedelta(minutes=60*24)
         all_blocks = pd.date_range(start=start_time, end=end_time, freq="1440min")
     elif timeFrame == "week":
         data["minute"] = data["timestamp"].dt.floor("1440min")
-        end_time = data['timestamp'].iloc[-1].ceil("1440min")
+        end_time = (data['timestamp'].iloc[-1] - pd.Timedelta(minutes=5)).floor("1440min")
         start_time = data["timestamp"].dt.floor("1440min").min()
         all_blocks = pd.date_range(start=start_time, end=end_time, freq="1440min")
 
