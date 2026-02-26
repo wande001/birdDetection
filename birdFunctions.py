@@ -154,7 +154,7 @@ def makeDailyCycleHeatmap(data):
 
     # Count calls per species per hour
     heatmap_data = data.groupby(['species', 'hour_of_day']).size().unstack(fill_value=0)
-
+    heatmap_data.loc["Total"] = heatmap_data.sum(axis=0)
     # Order species by total occurrence (descending)
     species_order = heatmap_data.sum(axis=1).sort_values(ascending=True).index
     heatmap_data = heatmap_data.reindex(species_order)
