@@ -21,7 +21,7 @@ def readCSV():
     df['timestamp'] = pd.to_datetime(df['timestamp'])
     return df
 
-def filterData(minLim=60, confidence_threshold=0.75):
+def filterData(minLim=60, confidence_threshold=0.6):
     # --- Filter last hour ---
     df = readCSV()
     endTime = (df['timestamp'].iloc[-1] - pd.Timedelta(minutes=2)).ceil("60min")
