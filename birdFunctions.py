@@ -89,6 +89,7 @@ def makeHeatmap(data, timeFrame="5min"):
         .reindex(columns=all_blocks)   # ensures 12 blocks
         .fillna(np.nan)
     )
+    heatmap_data.loc["Total"] = heatmap_data.sum(axis=0)
     heatmap_data = heatmap_data.loc[
         heatmap_data.sum(axis=1).sort_values(ascending=True).index
     ]
@@ -99,9 +100,9 @@ def makeHeatmap(data, timeFrame="5min"):
 
     # Create figure
     if timeFrame == "5min": plt.figure(figsize=(5, 6))
-    if timeFrame == "hour": plt.figure(figsize=(5, 12))
-    if timeFrame == "day": plt.figure(figsize=(5, 12))
-    if timeFrame == "week": plt.figure(figsize=(5, 20))
+    if timeFrame == "hour": plt.figure(figsize=(5, 14))
+    if timeFrame == "day": plt.figure(figsize=(5, 14))
+    if timeFrame == "week": plt.figure(figsize=(5, 25))
 
     # ---- PLOT WITH MATPLOTLIB ONLY ----
     plt.imshow(heat_matrix, aspect="auto", vmin=0, vmax=1, cmap="Blues", origin="lower")
@@ -124,7 +125,6 @@ def makeHeatmap(data, timeFrame="5min"):
         ticks=range(len(heatmap_data.index)),
         labels=["%s %d" % (species, total) for species, total in zip(heatmap_data.index, heatmap_data.sum(axis=1))]
     )
-
     plt.title("Species Presence Heatmap")
     plt.tight_layout()
     plt.show()
@@ -169,7 +169,7 @@ def makeDailyCycleHeatmap(data):
     heat_matrix = heatmap_normalized.values
 
     # Plot
-    plt.figure(figsize=(5,20))
+    plt.figure(figsize=(5,25))
     plt.imshow(heat_matrix, aspect='auto', cmap='Blues', origin='lower')
 
     # X-axis: hours
