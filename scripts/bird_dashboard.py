@@ -123,6 +123,7 @@ def audio_callback(indata, frames, time_info, status):
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio:
         from scipy.io.wavfile import write
         write(temp_audio.name, SAMPLE_RATE, indata[:, 0])
+        temp_path = temp_audio.name
         # Write the same audio data to another disk
         with open("../../recordings/audio_" + now + ".wav", "wb") as f:
             write(f, SAMPLE_RATE, indata[:, 0])
@@ -156,6 +157,11 @@ def audio_callback(indata, frames, time_info, status):
     else:
         print("No detections above threshold.")
 
+    if temp_path and os.path.exists(temp_path):
+        try:
+            os.remove(temp_path)
+        except Exception as e:
+            print(f"Warning: could not delete temp file {temp_path}: {e}")
 # ======================================================
 # THREAD FOR AUDIO LISTENING
 # ======================================================
