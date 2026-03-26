@@ -376,18 +376,26 @@ def overlapMatrix(data):
     plt.show()
 
 def firstCallPlot(data):
+    top_species = data['species'].value_counts().head(30).index
+    data = data[data['species'].isin(top_species)]
+
+    data['date'] = data['timestamp'].dt.date
     first_calls = data.sort_values('timestamp').groupby(['date', 'species']).first().reset_index()
 
     # Convert to hour
     first_calls['first_time'] = first_calls['timestamp'].dt.hour + first_calls['timestamp'].dt.minute/60
 
-    # Plot
-    for sp in first_calls['species'].unique():
-        subset = first_calls[first_calls['species'] == sp]
-        plt.plot(subset['date'], subset['first_time'], label=sp)
+    # Calculate average first call time per species
+    avg_first_calls = first_calls.groupby('species')['first_time'].median().reset_index()
 
-    plt.legend()
-    plt.ylabel("First singing time (hour)")
+    # Plot
+    avg_first_calls = avg_first_calls.sort_values('first_time', ascending=False)
+
+    plt.figure(figsize=(5, len(avg_first_calls) * 0.5))
+    plt.barh(avg_first_calls['species'], avg_first_calls['first_time'], color='skyblue')
+    plt.xlabel("First singing time (hour)")
+    plt.ylabel("Species")
     plt.title("Dawn chorus timing")
-    plt.xticks(rotation=45)
+    plt.xticks(range(0, 25,2))  # Set x-axis ticks to integers from 0 to 24
+    plt.grid(axis='x', linestyle='--', alpha=0.7)
     plt.show()
