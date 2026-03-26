@@ -14,15 +14,21 @@ selectedData = filterData(minLim = 60*24*7*31)
 result = aggregateData(selectedData)
 
 if len(result) > 0:
-
-    for _, row in result.iterrows():
-        print(f"{row['species']} — {row['count']}")
-
+    
     makeDailyCycleHeatmap(selectedData)
 
     makeHeatmap(selectedData, timeFrame="week")
 
     shannon_diversity(selectedData)
+
+    overlapMatrix(selectedData)
+
+    makeLengthSongPlot(selectedData)
+
+    firstCallPlot(selectedData)
+
+    for _, row in result.iterrows():
+       print(f"{row['species']} — {row['count']}")
 
 else:
     print("No observations in the last week")

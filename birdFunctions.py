@@ -155,7 +155,12 @@ exclude = ["Dog", "Human non-vocal", "Engine", "Human vocal",
         "Auerhoen",
         "Loodbekje",
         "Grauw Sneeuwhoen",
-        "Geelrugtroepiaal"]
+        "Geelrugtroepiaal",
+        "Bruinkapbergvink",
+        "Afrikaanse Bonte Kwikstaart",
+        "Blauwfazantje",
+        "Rode Kardinaal",
+        "Sneeuwbuikamazilia"]
 
 def readCSV():
     df = pd.read_csv("data/output.csv")
@@ -324,4 +329,65 @@ def makeDailyCycleHeatmap(data):
     plt.title("Daily Cycle Heatmap")
     plt.xlabel("Hour of Day")
     plt.tight_layout()
+    plt.show()
+
+def makeLengthSongPlot(data):
+    df = data.sort_values(['species', 'timestamp'])
+
+    # Time difference between consecutive detections
+    df['delta'] = df.groupby('species')['timestamp'].diff().dt.total_seconds()
+
+    # Define new bout if gap > threshold (e.g. 300 sec)
+    threshold = 300
+    df['new_bout'] = (df['delta'] > threshold) | (df['delta'].isna())
+
+    df['bout_id'] = df.groupby('species')['new_bout'].cumsum()
+
+    bouts = df.groupby(['species', 'bout_id']).agg(
+        start=('timestamp', 'min'),
+        end=('timestamp', 'max'),
+        count=('timestamp', 'size')
+    ).reset_index()
+
+    bouts['duration'] = (bouts['end'] - bouts['start']).dt.total_seconds()
+
+    # Plot distribution
+    plt.hist(bouts['duration'], bins=50, log=True)
+    plt.title("Bout duration distribution (Log Scale)")
+    plt.xlabel("Seconds")
+    plt.ylabel("Frequency (Log Scale)")
+    plt.show()
+
+def overlapMatrix(data):
+    data['time_bin_15'] = data['timestamp'].dt.floor('15min')
+    top_species = data['species'].value_counts().head(15).index
+    data = data[data['species'].isin(top_species)]
+
+    interaction = data.groupby(['time_bin_15', 'species']).size().unstack(fill_value=0)
+
+    corr = interaction.corr()
+
+    plt.figure(figsize=(8,6))
+    plt.imshow(corr)
+    plt.xticks(range(len(corr)), corr.columns, rotation=90)
+    plt.yticks(range(len(corr)), corr.index)
+    plt.colorbar(label='Correlation')
+    plt.title("Species correlation matrix")
+    plt.show()
+
+def firstCallPlot(data):
+    first_calls = data.sort_values('timestamp').groupby(['date', 'species']).first().reset_index()
+
+    # Convert to hour
+    first_calls['first_time'] = first_calls['timestamp'].dt.hour + first_calls['timestamp'].dt.minute/60
+
+    # Plot
+    for sp in first_calls['species'].unique():
+        subset = first_calls[first_calls['species'] == sp]
+        plt.plot(subset['date'], subset['first_time'], label=sp)
+
+    plt.legend()
+    plt.ylabel("First singing time (hour)")
+    plt.title("Dawn chorus timing")
+    plt.xticks(rotation=45)
     plt.show()
