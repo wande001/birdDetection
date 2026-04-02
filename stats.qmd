@@ -8,8 +8,8 @@ execute:
 ```{python}
 import pandas as pd
 from birdFunctions import *
-
-selectedData = filterData(minLim = 60*24*7*31)
+nDays = 60
+selectedData = filterData(minLim = 60*24*7*nDays)
 
 result = aggregateData(selectedData)
 
